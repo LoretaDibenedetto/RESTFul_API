@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using restFullApi.DataBase;
 
 namespace restFullApi.Controllers
 {
@@ -7,10 +8,28 @@ namespace restFullApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet] 
-        public IActionResult GetData()
+        private static FakeDatabase _database = new FakeDatabase();
+
+        [HttpGet]
+        public IActionResult GetUser(int idUser) 
         {
-            return Ok("Test");
+        
+         var user = _database.Users.FirstOrDefault(x => x.IdUser == idUser);
+         if (user == null)
+            {
+                return NotFound();
+            }
+        
+         return Ok(user);
+        
+        }
+
+
+
+        [HttpGet] 
+        public IActionResult AllUsers()
+        {
+            return Ok(_database.Users);
         }
     }
 }

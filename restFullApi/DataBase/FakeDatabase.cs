@@ -4,7 +4,7 @@
     {
 
         public static int GlobalId = 0;
-        public List<User> Users { get; set; };
+        public List<User> Users { get; set; }
         public FakeDatabase()
         {
             Users = new List<User>();
