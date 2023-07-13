@@ -26,7 +26,7 @@ namespace restFullApi.Controllers
 
 
 
-        [HttpGet] 
+        [HttpGet("all")] 
         public IActionResult AllUsers()
         {
             return Ok(_database.Users);
