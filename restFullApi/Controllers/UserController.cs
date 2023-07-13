@@ -31,5 +31,25 @@ namespace restFullApi.Controllers
         {
             return Ok(_database.Users);
         }
+
+
+
+        [HttpDelete]
+
+        public IActionResult DeleteUser(int idUser)
+        {
+
+            var user = _database.Users.FirstOrDefault(x => x.IdUser == idUser);
+            if (user == null)
+            
+                return NotFound();
+            
+            _database.Users.Remove(user);
+            return Ok();
+
+        }
+
+
+
     }
 }
