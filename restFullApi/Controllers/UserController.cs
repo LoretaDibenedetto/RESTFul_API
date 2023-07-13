@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using restFullApi.DataBase;
+using restFullApi.Model.Request;
 
 namespace restFullApi.Controllers
 {
@@ -49,7 +50,16 @@ namespace restFullApi.Controllers
 
         }
 
-
+        [HttpPost]
+        public IActionResult AddUser([FromBody]AddUserRequest user)
+        {
+            _database.AddUser(new User { IdUser = 0, 
+                                         Name = user.Name,
+                                         Password = user.Password, 
+                                         Surname = user.Surname,
+                                         UserName = user.UserName });
+            return Ok();
+        }
 
     }
 }
